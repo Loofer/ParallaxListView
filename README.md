@@ -1,6 +1,6 @@
 ## ParallaxListView 带有视差动画的listview
 
-![带视差的 ListView][https://github.com/Loofer/ParallaxListView/blob/master/screen/parallaxlistview.gif]
+<img src = "https://github.com/Loofer/ParallaxListView/blob/master/screen/parallaxlistview.gif" width=280>
 
 ## 用法
 
