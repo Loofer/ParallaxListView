@@ -1,5 +1,6 @@
 ## ParallaxListView 带有视差动画的listview
 
+![GitHub](https://avatars2.githubusercontent.com/u/3265208?v=3&s=100 "GitHub,Social Coding")
 ![带视差的 ListView][screen/parallaxlistview.gif]
 
 ## 用法
