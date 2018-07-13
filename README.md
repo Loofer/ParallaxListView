@@ -1,6 +1,6 @@
 ## ParallaxListView 带有视差动画的listview
 
-[带视差的 ListView](screen/parallaxlistview.gif)
+！[带视差的 ListView](screen/parallaxlistview.gif)
 
 ## 用法
 
