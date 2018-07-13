@@ -1,5 +1,6 @@
 package org.loofer.parallaxlistview;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -8,8 +9,6 @@ import android.view.ViewTreeObserver;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.ListView;
-
-import com.nineoldandroids.animation.ValueAnimator;
 
 /**
  * Created by Loofer on 2016/8/7.
@@ -26,10 +25,12 @@ public class ParallaxListView extends ListView {
     public ParallaxListView(Context context) {
         super(context);
     }
+
     private int maxHeight;
     private ImageView imageView;
     private int orignalHeight;//ImageView最初的高度
-    public void setParallaxImageView( final ImageView imageView){
+
+    public void setParallaxImageView(final ImageView imageView) {
         this.imageView = imageView;
 
         //设定最大高度
@@ -39,10 +40,10 @@ public class ParallaxListView extends ListView {
                 imageView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 
                 orignalHeight = imageView.getHeight();
-                Log.e("tag", "orignalHeight: "+orignalHeight);
+                Log.e("tag", "orignalHeight: " + orignalHeight);
                 int drawableHeight = imageView.getDrawable().getIntrinsicHeight();//图片的高度
-                maxHeight = orignalHeight>drawableHeight?
-                        orignalHeight*2:drawableHeight;
+                maxHeight = orignalHeight > drawableHeight ?
+                        orignalHeight * 2 : drawableHeight;
             }
         });
 
@@ -62,12 +63,12 @@ public class ParallaxListView extends ListView {
                                    int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
 
 //		Log.e("tag", "deltaY: "+deltaY   +   "  isTouchEvent:"+isTouchEvent);
-        if(deltaY<0 && isTouchEvent){
+        if (deltaY < 0 && isTouchEvent) {
             //表示顶部到头，并且是手动拖动到头的情况
             //我们需要不断的增加ImageView的高度
-            if(imageView!=null){
-                int newHeight = imageView.getHeight()-deltaY/3;
-                if(newHeight>maxHeight)newHeight = maxHeight;
+            if (imageView != null) {
+                int newHeight = imageView.getHeight() - deltaY / 3;
+                if (newHeight > maxHeight) newHeight = maxHeight;
 
                 imageView.getLayoutParams().height = newHeight;
                 imageView.requestLayout();//使ImageView的布局参数生效
@@ -80,9 +81,9 @@ public class ParallaxListView extends ListView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if(ev.getAction()==MotionEvent.ACTION_UP){
+        if (ev.getAction() == MotionEvent.ACTION_UP) {
             //需要将ImageView的高度缓慢恢复到最初高度
-            ValueAnimator animator = ValueAnimator.ofInt(imageView.getHeight(),orignalHeight);
+            ValueAnimator animator = ValueAnimator.ofInt(imageView.getHeight(), orignalHeight);
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animator) {
